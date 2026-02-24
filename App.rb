@@ -1,89 +1,189 @@
 require 'sinatra'
 
 set :bind, '0.0.0.0'
-set :port, ENV['PORT'] || 4567
 
 get '/' do
   <<-HTML
-  <!DOCTYPE html>
-  <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <title>Meu Site Ruby Profissional</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-        color: white;
-        text-align: center;
-      }
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startup Ruby</title>
 
-      header {
-        padding: 100px 20px;
-      }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-      h1 {
-        font-size: 3em;
-        margin-bottom: 10px;
-      }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-      p {
-        font-size: 1.2em;
-        opacity: 0.8;
-      }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0e0e14;
+  color: white;
+  scroll-behavior: smooth;
+}
 
-      .btn {
-        margin-top: 30px;
-        padding: 15px 30px;
-        background: #ff00cc;
-        border: none;
-        border-radius: 30px;
-        color: white;
-        font-size: 1em;
-        cursor: pointer;
-        transition: 0.3s;
-      }
+nav {
+  position: fixed;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
 
-      .btn:hover {
-        background: #00dbde;
-        transform: scale(1.05);
-      }
+nav h2 {
+  color: #7f5af0;
+}
 
-      section {
-        padding: 80px 20px;
-      }
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-weight: 500;
+  transition: 0.3s;
+}
 
-      footer {
-        padding: 20px;
-        background: rgba(0,0,0,0.4);
-        font-size: 0.9em;
-      }
-    </style>
-  </head>
-  <body>
+nav a:hover {
+  color: #7f5af0;
+}
 
-    <header>
-      <h1>🚀 Site Profissional em Ruby</h1>
-      <p>Desenvolvido com Sinatra • Design Moderno • 100% Online</p>
-      <button class="btn" onclick="alert('Ruby é poderosa!')">Clique Aqui</button>
-    </header>
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10%;
+  background: linear-gradient(135deg,#16161d,#1f1f2e,#0e0e14);
+}
 
-    <section>
-      <h2>Sobre</h2>
-      <p>Este é um site feito totalmente em Ruby usando Sinatra, pronto para deploy profissional.</p>
-    </section>
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
 
-    <section>
-      <h2>Contato</h2>
-      <p>Email: seuemail@email.com</p>
-    </section>
+.hero span {
+  color: #7f5af0;
+}
 
-    <footer>
-      © 2026 - Desenvolvido em Ruby
-    </footer>
+.hero p {
+  max-width: 600px;
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
 
-  </body>
-  </html>
+.btn {
+  display: inline-block;
+  padding: 15px 35px;
+  background: #7f5af0;
+  border-radius: 40px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background: #6246ea;
+}
+
+.section {
+  padding: 100px 10%;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 30px;
+}
+
+.card {
+  background: #1f1f2e;
+  padding: 30px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  background: #26263a;
+}
+
+footer {
+  padding: 40px;
+  text-align: center;
+  background: #16161d;
+  opacity: 0.6;
+}
+
+@media(max-width:768px){
+  .hero h1 { font-size: 2.3rem; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h2>RubyTech</h2>
+  <div>
+    <a href="#sobre">Sobre</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#contato">Contato</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Construindo o futuro com <span>Ruby</span></h1>
+  <p>Plataformas modernas, escaláveis e com design premium. Performance e inovação em um único lugar.</p>
+  <a href="#contato" class="btn">Começar Projeto</a>
+</section>
+
+<section id="sobre" class="section">
+  <h2>Sobre Nós</h2>
+  <p>Somos uma startup focada em soluções digitais de alto desempenho utilizando Ruby e tecnologias modernas.</p>
+</section>
+
+<section id="servicos" class="section">
+  <h2>Serviços</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Desenvolvimento Web</h3>
+      <p>Aplicações rápidas e seguras.</p>
+    </div>
+    <div class="card">
+      <h3>APIs Escaláveis</h3>
+      <p>Backends prontos para crescimento.</p>
+    </div>
+    <div class="card">
+      <h3>Consultoria Tech</h3>
+      <p>Estratégia digital e inovação.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="section">
+  <h2>Contato</h2>
+  <p>Email: contato@rubystartup.com</p>
+</section>
+
+<footer>
+  © 2026 RubyTech • Startup Digital
+</footer>
+
+</body>
+</html>
   HTML
 end
